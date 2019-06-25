@@ -1,0 +1,17 @@
+<p>{{directoryTitle}}</p>
+<form action="" id="filter">
+    <label for="filterCalc">Filter calculations by name:</label>
+    <input type="text" id="term" [(ngModel)]="term" [ngModelOptions]="{standalone:true}"/>
+</form>
+<ul id="calc-listing">
+    <li *ngFor="let calc of calcs | filter:term">
+        <!-- Calculation Type -->
+        <span [ngStyle]="{background:calc.color}">{{calc.type | uppercase}}</span>
+        <!-- Calculation Value -->
+        <span>{{calc.value}}</span>
+        <!-- Remove calcs -->
+        <button (click)="remove($event)" [attr.data-name]="calc.type">Delete</button>
+    </li>
+</ul>
+
+<button (click)="logIt()">Log Me</button>
