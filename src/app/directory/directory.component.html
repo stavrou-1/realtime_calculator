@@ -1,7 +1,7 @@
 <p>{{directoryTitle}}</p>
 <form action="" id="filter">
     <label for="filterCalc">Filter calculations by name:</label>
-    <input type="text" id="term" [(ngModel)]="term" [ngModelOptions]="{standalone:true}"/>
+    <input type="text" id="term" [(ngModel)]="term" name="term"/>
 </form>
 <ul id="calc-listing">
     <li *ngFor="let calc of calcs | filter:term">
@@ -14,4 +14,8 @@
     </li>
 </ul>
 
-<button (click)="logIt()">Log Me</button>
+<form action="" id="add-calc">
+    <input type="text" [(ngModel)]="type" name="type" placeholder="Enter a mathematical type"/>
+    <input type="text" [(ngModel)]="value" name="value" placeholder="Enter a mathematical value"/>
+    <button (click)="fbPostData(type, value)">Add calculation</button>
+</form>

@@ -1,0 +1,17 @@
+[
+    {
+        "type":"Multiply",
+        "value":"2*3=6",
+        "color":"orange"
+    },
+    {
+        "type":"Add",
+        "value":"5+5=10",
+        "color":"green"
+    },
+    {
+        "type":"Subtract",
+        "value":"10-4=6",
+        "color":"red"
+    }
+]
