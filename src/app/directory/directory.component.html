@@ -1,21 +1,190 @@
-<p>{{directoryTitle}}</p>
-<form action="" id="filter">
-    <label for="filterCalc">Filter calculations by name:</label>
-    <input type="text" id="term" [(ngModel)]="term" name="term"/>
-</form>
-<ul id="calc-listing">
-    <li *ngFor="let calc of calcs | filter:term">
-        <!-- Calculation Type -->
-        <span [ngStyle]="{background:calc.color}">{{calc.type | uppercase}}</span>
-        <!-- Calculation Value -->
-        <span>{{calc.value}}</span>
-        <!-- Remove calcs -->
-        <button (click)="remove($event)" [attr.data-name]="calc.type">Delete</button>
-    </li>
-</ul>
+<header class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h2>
+                    <span class="headerBolt">
+                        <i class="material-icons">offline_bolt</i>
+                    </span>
+                    <span>{{ directoryTitle }}</span>
+                </h2>
+                <h6>Trace your calculations</h6>
+            </div>
+        </div>
+    </div>
+</header>
 
-<form action="" id="add-calc">
-    <input type="text" [(ngModel)]="type" name="type" placeholder="Enter a mathematical type"/>
-    <input type="text" [(ngModel)]="value" name="value" placeholder="Enter a mathematical value"/>
-    <button (click)="fbPostData(type, value)">Add calculation</button>
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <form action="" id="filter">
+                <label for="filterCalc" class="hidden">Filter calculations by name:</label>
+                <input type="text" id="term" [(ngModel)]="term" name="term" placeholder="Search by characters:( +, -, /, * )"/>
+            </form>            
+            <form id="add-calc" (ngSubmit)="fbPostData($event)" novalidate>
+
+                    <div>
+                        <h4>Select a computation</h4>
+                    </div>
+                    <div class="custom-radios">
+                        <div>
+                            <input type="radio" id="color-1" name="color" name="operation" [value]="operation.add" (change)="changeOperation(operation.add)" checked>
+                            <label for="color-1">
+                            <span class="icons">
+                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+                            </span>
+                            <span>Add</span>
+                            </label>
+                        </div>
+                        
+                        <div>
+                            <input type="radio" id="color-2" name="color" name="operation" [value]="operation.subtract" (change)="changeOperation(operation.subtract)">
+                            <label for="color-2">
+                            <span class="icons">
+                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+                            </span>
+                            <span>Subtract</span>
+                            </label>
+                        </div>
+                        
+                        <div>
+                            <input type="radio" id="color-3" name="operation" [value]="operation.divide" (change)="changeOperation(operation.divide)" >
+                            <label for="color-3">
+                            <span class="icons">
+                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+                            </span>
+                            <span>Divide</span>
+                            </label>
+                        </div>
+                        
+                        <div>
+                            <input type="radio" id="color-4" name="operation" [value]="operation.multiply" (change)="changeOperation(operation.multiply)">
+                            <label for="color-4">
+                            <span class="icons">
+                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+                            </span>
+                            <span>Multiply</span>
+                            </label>
+                        </div>
+                    </div>
+
+                <!-- <ul class="operationsList">
+                    <li>
+                        <h4>Select a computation</h4>
+                    </li>
+                    <li>
+                        <p>
+                            <label for="add">
+                                <input type="radio" id="add" name="operation" [value]="operation.add" (change)="changeOperation(operation.add)" checked required> 
+                                <span>Add</span>
+                            </label>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <label for="subtract">
+                                <input type="radio" id="subtract" name="operation" [value]="operation.subtract" (change)="changeOperation(operation.subtract)" required/> 
+                                <span>Subtract</span>
+                            </label>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <label for="divide">
+                                <input type="radio" id="divide" name="operation" [value]="operation.divide" (change)="changeOperation(operation.divide)" required/> 
+                                <span>Divide</span>
+                            </label>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <label for="multiply">
+                                <input type="radio" id="multiply" name="operation" [value]="operation.multiply" (change)="changeOperation(operation.multiply)" required/> 
+                                <span>Multiply</span>
+                            </label>
+                        </p>
+                    </li>
+                </ul> -->
+                
+                <div class="row">
+                    <div class="col s6 m6 l4">
+                        <input type="number" placeholder="Enter a number" 
+                        [class.is-danger]="nameRef1.dirty && nameRef1.invalid || (nameRef1.invalid && submitted)"
+                        [(ngModel)]="num1"
+                        name="num1"
+                        #nameRef1="ngModel"
+                        required/>
+                    
+                        <p class="is-danger" *ngIf="nameRef1.dirty && nameRef1.errors ?.required || (nameRef1.invalid && submitted)">Please enter a 1st number to compute the sum</p>
+                    </div>
+                    <div class="col s6 m6 l4">
+                        <input type="number" placeholder="Enter a number"
+                        [class.is-danger]="nameRef2.dirty && nameRef2.invalid || (nameRef2.invalid && submitted)"
+                        [(ngModel)]="num2"
+                        name="num2"
+                        #nameRef2="ngModel"
+                        required/>
+                    
+                        <p class="is-danger" *ngIf="nameRef2.dirty && nameRef2.errors ?.required || (nameRef2.invalid && submitted)">Please enter a 2nd number to compute the sum</p>
+                    </div>
+                    <div class="col s12 m12 l4">
+                        <button class="waves-effect waves-light btn blue" type="submit">
+                            <i class="material-icons">arrow_forward_ios</i>
+                            <span>Calculate</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <ul id="calc-listing">
+                <li *ngIf="loading === true" class="noCalculations">
+                    <h4>Loading your computational experience...</h4>
+                </li>
+                <li *ngIf="calcs.length === 0 && loading === false" class="noCalculations">
+                    <span>You have 0 calculations. Compute below!</span>
+                </li>
+                <li *ngIf="calcs.length > 0 && loading === false" class="noCalculations">
+                    <h4>Calculation History</h4>
+                </li>
+                <li *ngFor="let calc of calcs | filter:term; let i = index" [attr.data-index]="i">
+                    <span [ngClass]="calc.color" *ngIf="(i < 10)">{{calc.value}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<footer class="footer blue" *ngIf="loading === false">
+    <div class="container">
+        <div class="row row1">
+            <div class="col s12 m6 l6">
+                <ul>
+                    <li>
+                        <h6>Calculator digest:</h6>
+                    </li>
+                    <li>
+                        <a href="https://interestingengineering.com/brief-history-calculators" target="_blank">The people's best friend</a>
+                    </li>
+                    <li>
+                        <a href="http://www.ldonline.org/article/19274/" target="_blank">Beyond getting the answer</a>
+                    </li>
+                    <li>
+                        <a href="https://www.thecalculatorsite.com/articles/units/history-of-the-calculator.php" target="_blank">The history of the calculator</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col s12 m6 l6">
+                <ul>
+                    <li>
+                        <h5>
+                            <small>&copy;2019 | </small>
+                            <span>Digital Trace</span>
+                            <span>
+                                <i class="material-icons">offline_bolt</i>
+                            </span>
+                        </h5>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>

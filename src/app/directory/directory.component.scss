@@ -1,0 +1,185 @@
+.powderBlue {
+    background-color: #2196F3;
+}
+
+header.header {
+    border-top: 2.5em solid #2196F3;
+}
+header span.headerBolt {
+    position: relative;
+    top: 0.2em;
+}
+header span.headerBolt i {
+    font-size: 1.2em;
+    opacity: 1;
+}
+
+ul#calc-listing li span {
+    padding: 0.5em 1em;
+    display: block;
+    margin: 0.5em 0;
+    color: #FFF;
+    font-size: 1.2rem;
+}
+ul#calc-listing {
+    padding: 1em 0;
+}
+ul#calc-listing li.noCalculations span {
+    color: black;
+    padding: 0;
+}
+input.is-danger {
+    border-bottom: 0.15em solid red;
+    color: red;
+}
+p.is-danger {
+    color: red;
+    font-weight: 600;
+}
+button.waves-effect.waves-light.btn.blue {
+    position: relative;
+    /* top: 0.5em; */
+    width: 100%;
+    /* font-size: 1.5em; */
+    height: auto;
+    padding: 1em;
+}
+button.waves-effect.waves-light.btn.blue {
+    font-size: 1.5em;
+}
+button.waves-effect.waves-light.btn.blue i {
+    padding-right: 0.5em;
+    position: relative;
+    top: 0.2em;
+    font-size: 1.1em;
+}
+// footer styles
+footer.footer.blue .row1 {
+    margin: 0;
+    min-height: 10em;
+    color: #FFF;
+}
+footer.footer.blue .row1 h1 {
+    padding: 0;
+    margin: 0;
+}
+footer.footer.blue div.col.s12:first-child {
+    text-align: center;
+    margin: 1.5em 0;
+    position: relative;
+    ul li {
+        line-height: 2em;
+    }
+    ul li a {
+        color: #FFF;
+    }
+    ul li a:hover {
+        text-decoration: underline;
+    }
+}
+footer.footer.blue div.col.s12:last-child {
+    text-align: center;
+    h5 {
+        margin: 0.5em;
+        small {
+            font-size: 0.4em;
+            margin-right: 1em;
+            vertical-align: middle;
+        }
+        span i {
+            font-size: 1.8em;
+            margin: 0.5em 0;
+            vertical-align: middle;
+        }
+    }
+}
+footer.footer.blue div.col.s12 {
+    // border: 0.1em solid orange;
+    color: #FFF;
+    min-height: 5em;
+}
+
+// custom radio button styles below
+// Colors
+$color-1: #4CAF50;
+$color-2: #2196F3;
+$color-3: #ff9800;
+$color-4: #795548;
+
+.custom-radios {
+  
+  div {
+    display: inline-block;
+  }
+
+  div.custom-radios label span.icons ~ span { background-color: black; }
+
+  input[type="radio"] {
+    display: none;
+
+    + label {
+      color: #333;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+
+      span.icons {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        margin: -1px 4px 0 0;
+        vertical-align: middle;
+        cursor: pointer;
+        border-radius: 50%;
+        border: 2px solid #FFFFFF;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+        background-repeat: no-repeat;
+        background-position: center;
+        text-align: center;
+        line-height: 44px;
+    
+        img {
+          opacity: 0;
+          transition: all .3s ease;
+        }
+      }
+    }
+
+    &#color-1 + label span {
+      background-color: $color-1;
+    }
+
+    &#color-2 + label span {
+      background-color: $color-2;
+    }
+
+    &#color-3 + label span {
+      background-color: $color-3;
+    }
+
+    &#color-4 + label span {
+      background-color: $color-4;
+    }
+
+    &:checked + label span img {
+      opacity: 1;
+    }
+
+    + label span ~ span {
+        background: none !important;
+        font-size: 1.2em;
+        padding-right: 0.5em;
+    }
+  }
+}
+
+@media screen and (min-width:601px) {
+    footer.footer.blue div.col.s12:first-child {
+        text-align: left;
+    }
+    footer.footer.blue div.col.s12:last-child {
+        text-align: right;
+    }
+    footer.footer.blue div.col.s12:last-child h5 {
+        margin: 2.5em 0;
+    }
+}
