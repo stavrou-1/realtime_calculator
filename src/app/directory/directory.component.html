@@ -8,7 +8,7 @@
                     </span>
                     <span>{{ directoryTitle }}</span>
                 </h2>
-                <h6>Trace your calculations</h6>
+                <h6>A web application to trace your calculations</h6>
             </div>
         </div>
     </div>
@@ -19,12 +19,12 @@
         <div class="col s12">
             <form action="" id="filter">
                 <label for="filterCalc" class="hidden">Filter calculations by name:</label>
-                <input type="text" id="term" [(ngModel)]="term" name="term" placeholder="Search by characters:( +, -, /, * )"/>
+                <input type="text" id="term" [(ngModel)]="term" name="term" placeholder="Filter by characters:( +, -, /, * )"/>
             </form>            
             <form id="add-calc" (ngSubmit)="fbPostData($event)" novalidate>
 
                     <div>
-                        <h4>Select a computation</h4>
+                        <h4>Select an operator</h4>
                     </div>
                     <div class="custom-radios">
                         <div>
@@ -67,44 +67,6 @@
                             </label>
                         </div>
                     </div>
-
-                <!-- <ul class="operationsList">
-                    <li>
-                        <h4>Select a computation</h4>
-                    </li>
-                    <li>
-                        <p>
-                            <label for="add">
-                                <input type="radio" id="add" name="operation" [value]="operation.add" (change)="changeOperation(operation.add)" checked required> 
-                                <span>Add</span>
-                            </label>
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            <label for="subtract">
-                                <input type="radio" id="subtract" name="operation" [value]="operation.subtract" (change)="changeOperation(operation.subtract)" required/> 
-                                <span>Subtract</span>
-                            </label>
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            <label for="divide">
-                                <input type="radio" id="divide" name="operation" [value]="operation.divide" (change)="changeOperation(operation.divide)" required/> 
-                                <span>Divide</span>
-                            </label>
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            <label for="multiply">
-                                <input type="radio" id="multiply" name="operation" [value]="operation.multiply" (change)="changeOperation(operation.multiply)" required/> 
-                                <span>Multiply</span>
-                            </label>
-                        </p>
-                    </li>
-                </ul> -->
                 
                 <div class="row">
                     <div class="col s6 m6 l4">
@@ -136,14 +98,17 @@
                 </div>
             </form>
             <ul id="calc-listing">
-                <li *ngIf="loading === true" class="noCalculations">
-                    <h4>Loading your computational experience...</h4>
+                <li *ngIf="loading == true" class="noCalculations">
+                    <h5>Loading digital trace history...</h5>
+                    <div class="progress">
+                        <div class="indeterminate blue"></div>
+                    </div>
                 </li>
-                <li *ngIf="calcs.length === 0 && loading === false" class="noCalculations">
+                <li *ngIf="!calcs.length && loading === false" class="noCalculations">
                     <span>You have 0 calculations. Compute below!</span>
                 </li>
                 <li *ngIf="calcs.length > 0 && loading === false" class="noCalculations">
-                    <h4>Calculation History</h4>
+                    <h4>Calculation History ({{calcs.length}})</h4>
                 </li>
                 <li *ngFor="let calc of calcs | filter:term; let i = index" [attr.data-index]="i">
                     <span [ngClass]="calc.color" *ngIf="(i < 10)">{{calc.value}}</span>
@@ -176,7 +141,7 @@
                 <ul>
                     <li>
                         <h5>
-                            <small>&copy;2019 | </small>
+                            <small><a href="https://www.linkedin.com/in/yiannis-stavrou" target="_blank">&copy;2019 Yiannis Stavrou</a>&nbsp;&nbsp; | </small>
                             <span>Digital Trace</span>
                             <span>
                                 <i class="material-icons">offline_bolt</i>

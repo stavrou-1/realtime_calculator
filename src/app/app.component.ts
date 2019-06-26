@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title:string = 'realtime-calcultor';
+  title:string = 'Digital Trace';
 }

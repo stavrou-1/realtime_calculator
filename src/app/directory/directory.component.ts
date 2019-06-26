@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { LoggingService } from '../logging.service';
-import { DataService } from '../data.service';
 declare var firebase: any;
 
 @Component({
   selector: 'app-directory',
   templateUrl: './directory.component.html',
-  styleUrls: ['./directory.component.scss'],
-  providers: [DataService]
+  styleUrls: ['./directory.component.scss']
 })
 
 export class DirectoryComponent implements OnInit {
@@ -17,7 +14,7 @@ export class DirectoryComponent implements OnInit {
   type:any;
   value:any;
   calc:string;
-  loading:boolean = false;
+  loading:boolean;
   submitted:boolean;
   calcs:any = [];
 
@@ -35,7 +32,7 @@ export class DirectoryComponent implements OnInit {
     symbol: undefined
   };
 
-  constructor(private logger: LoggingService, private dataService: DataService) { }
+  constructor(private logger: LoggingService) { }
 
   logIt() {
     this.logger.log();
@@ -74,14 +71,13 @@ export class DirectoryComponent implements OnInit {
   }
 
   fbGetData() {
+    this.loading = true;
     firebase.database().ref('/').on('child_added', 
     (snapshot:any) => {
       if (snapshot) {
         this.calcs.unshift(snapshot.val())
-        this.loading = false;
-
-        console.log(this.loading);
       }
+      this.loading = false;
     },
     (error:any) => {
       console.error(error);

@@ -82,7 +82,7 @@ footer.footer.blue div.col.s12:last-child {
     h5 {
         margin: 0.5em;
         small {
-            font-size: 0.4em;
+            font-size: 0.6em;
             margin-right: 1em;
             vertical-align: middle;
         }
@@ -91,6 +91,12 @@ footer.footer.blue div.col.s12:last-child {
             margin: 0.5em 0;
             vertical-align: middle;
         }
+    }
+    ul li a {
+        color: #FFF;
+    }
+    ul li a:hover {
+        text-decoration: underline;
     }
 }
 footer.footer.blue div.col.s12 {
@@ -170,6 +176,16 @@ $color-4: #795548;
         padding-right: 0.5em;
     }
   }
+}
+
+ul#calc-listing .progress {
+    background-color: #9bd3ff;
+}
+
+// materialize design theme resets
+input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 0.05em solid #2196F3;
+    box-shadow: 0 1px 0 0 #2196F3;
 }
 
 @media screen and (min-width:601px) {
