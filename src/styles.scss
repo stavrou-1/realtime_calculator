@@ -13,3 +13,10 @@ nav a.active {
 .hidden {
     display: none;
 }
+ul#calc-listing .progress {
+    background-color: #9bd3ff;
+}
+
+ul#calc-listing .progress .indeterminate.blue {
+    background-color: orange;
+}

@@ -18,9 +18,13 @@
      href="assets/bolt.png"/>
 </head>
 <body>
-  <app-root>Loading...</app-root>
+  <app-root>
+    <span>Loading...</span>
+    <div class="progress">
+      <div class="indeterminate blue"></div>
+    </div>
+  </app-root>
 
-<!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-app.js"></script>
@@ -31,7 +35,7 @@
      https://firebase.google.com/docs/web/setup#config-web-app -->
 
 <script>
-  // Your web app's Firebase configuration
+  // Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyDgt73Lr00suWv0zhBkSlu7mSKOaAfG1-E",
     authDomain: "calc-angular.firebaseapp.com",
@@ -44,5 +48,6 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 </script>
+<!-- Compiled and minified JavaScript -->
 </body>
 </html>

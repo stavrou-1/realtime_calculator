@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoggingService } from '../logging.service';
+import { HttpClient } from '@angular/common/http';
 declare var firebase: any;
 
 @Component({
@@ -32,7 +33,7 @@ export class DirectoryComponent implements OnInit {
     symbol: undefined
   };
 
-  constructor(private logger: LoggingService) { }
+  constructor(private logger: LoggingService, private http: HttpClient) { }
 
   logIt() {
     this.logger.log();
@@ -40,6 +41,14 @@ export class DirectoryComponent implements OnInit {
 
   ngOnInit() {
     this.fbGetData();
+    var ref = firebase.database().ref('/');
+    ref.once('value')
+      .then(function(snapshot) {
+        var key = snapshot.key; // key
+        var childKey = snapshot.child('name/last').key; // last
+
+        console.log(snapshot.val());
+      })
   }
 
   changeOperation(val:any) {

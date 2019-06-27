@@ -23,54 +23,57 @@
             </form>            
             <form id="add-calc" (ngSubmit)="fbPostData($event)" novalidate>
 
+                <div>
+                    <h4>Make a calculation</h4>
+                    <h6>Select an operator and your digits</h6>
+                </div><br/>
+                <div class="custom-radios">
                     <div>
-                        <h4>Select an operator</h4>
+                        <input type="radio" id="color-1" name="color" name="operation" [value]="operation.add" (change)="changeOperation(operation.add)" checked>
+                        <label for="color-1">
+                        <span class="icons waves-effect waves-light">
+                            <img src="../../assets/add.svg" alt="Add Icon" />
+                        </span>
+                        <span>Add</span>
+                        </label>
                     </div>
-                    <div class="custom-radios">
-                        <div>
-                            <input type="radio" id="color-1" name="color" name="operation" [value]="operation.add" (change)="changeOperation(operation.add)" checked>
-                            <label for="color-1">
-                            <span class="icons">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-                            </span>
-                            <span>Add</span>
-                            </label>
-                        </div>
-                        
-                        <div>
-                            <input type="radio" id="color-2" name="color" name="operation" [value]="operation.subtract" (change)="changeOperation(operation.subtract)">
-                            <label for="color-2">
-                            <span class="icons">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-                            </span>
-                            <span>Subtract</span>
-                            </label>
-                        </div>
-                        
-                        <div>
-                            <input type="radio" id="color-3" name="operation" [value]="operation.divide" (change)="changeOperation(operation.divide)" >
-                            <label for="color-3">
-                            <span class="icons">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-                            </span>
-                            <span>Divide</span>
-                            </label>
-                        </div>
-                        
-                        <div>
-                            <input type="radio" id="color-4" name="operation" [value]="operation.multiply" (change)="changeOperation(operation.multiply)">
-                            <label for="color-4">
-                            <span class="icons">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-                            </span>
-                            <span>Multiply</span>
-                            </label>
-                        </div>
+                    
+                    <div>
+                        <input type="radio" id="color-2" name="color" name="operation" [value]="operation.subtract" (change)="changeOperation(operation.subtract)">
+                        <label for="color-2">
+                        <span class="icons waves-effect waves-light">
+                            <img src="../../assets/minus.svg" alt="Minus Icon" />
+                        </span>
+                        <span>Subtract</span>
+                        </label>
                     </div>
-                
+                    
+                    <div>
+                        <input type="radio" id="color-3" name="operation" [value]="operation.divide" (change)="changeOperation(operation.divide)" >
+                        <label for="color-3">
+                        <span class="icons waves-effect waves-light">
+                            <img src="../../assets/divide.svg" alt="Divide Icon" />
+                        </span>
+                        <span>Divide</span>
+                        </label>
+                    </div>
+                    
+                    <div>
+                        <input type="radio" id="color-4" name="operation" [value]="operation.multiply" (change)="changeOperation(operation.multiply)">
+                        <label for="color-4">
+                        <span class="icons waves-effect waves-light">
+                            <img src="../../assets/times.svg" alt="Multiply Icon" />
+                        </span>
+                        <span>Multiply</span>
+                        </label>
+                    </div>
+                </div>
+
+                <br/>
+
                 <div class="row">
                     <div class="col s6 m6 l4">
-                        <input type="number" placeholder="Enter a number" 
+                        <input type="number" placeholder="Enter number 1" 
                         [class.is-danger]="nameRef1.dirty && nameRef1.invalid || (nameRef1.invalid && submitted)"
                         [(ngModel)]="num1"
                         name="num1"
@@ -80,7 +83,7 @@
                         <p class="is-danger" *ngIf="nameRef1.dirty && nameRef1.errors ?.required || (nameRef1.invalid && submitted)">Please enter a 1st number to compute the sum</p>
                     </div>
                     <div class="col s6 m6 l4">
-                        <input type="number" placeholder="Enter a number"
+                        <input type="number" placeholder="Enter number 2"
                         [class.is-danger]="nameRef2.dirty && nameRef2.invalid || (nameRef2.invalid && submitted)"
                         [(ngModel)]="num2"
                         name="num2"
